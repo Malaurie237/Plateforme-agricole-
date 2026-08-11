@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            
+            // Champs personnalisés pour notre plateforme AgTech
+            $table->enum('role', ['agriculteur', 'grossiste', 'industriel', 'particulier', 'admin'])->default('particulier');
+            $table->string('langue', 2)->default('fr'); // fr ou en
+            $table->string('photo_cni')->nullable(); // Chemin vers la photo CNI
+            $table->boolean('est_verifie')->default(false); // Validé par Admin (Oui/Non)
+            $table->enum('type_abonnement', ['gratuit', 'payant'])->default('gratuit');
+            $table->string('telephone')->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });
