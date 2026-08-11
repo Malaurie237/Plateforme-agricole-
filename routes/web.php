@@ -5,7 +5,7 @@ use App\Http\Controllers\Teams\TeamInvitationController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', 'welcome')->name('home');
+Route::view('/', 'welcome')->name('home');
 
 Route::prefix('{current_team}')
     ->middleware(['auth', 'verified', EnsureTeamMembership::class])
@@ -27,3 +27,4 @@ Route::get("/franck" , function (){
 Route::get("/malaurie", function (){
     return view("malaurie");
 });
+Route::view('/catalogue', 'catalogue');
